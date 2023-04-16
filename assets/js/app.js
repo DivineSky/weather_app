@@ -13,13 +13,21 @@ weatherForm.addEventListener('submit', (event) => {
         let view = ``
         // view += `W ${dataFromApi.location.name} jest dzisiaj ${dataFromApi.current.temp_c} stopni celcjusza`
 
+        //  data
         view += `<div class='weather__info'>`
 
         // icon
         view += `<div class='weather__icon'>      
-        
+
         <img src= '${dataFromApi.current.condition.icon}' alt='${dataFromApi.current.condition.text}' >
 
+        </div>`
+
+        // location
+        view += `<div class='weather_location'>
+            </p>${dataFromApi.location.name}</p>
+            </p>${dataFromApi.location.country}</p>
+            </p>${dataFromApi.location.localtime}</p>
         </div>`
 
         // temp
@@ -29,6 +37,7 @@ weatherForm.addEventListener('submit', (event) => {
 
         </div>`
 
+        //details 
         view += `<div class="weather__details">
                 <p>The amount of rainfall: ${dataFromApi.current.precip_mm}mm </p>
                 <p>Humidity: ${dataFromApi.current.humidity}%</p>
@@ -37,13 +46,8 @@ weatherForm.addEventListener('submit', (event) => {
 
         view += `</div>`
 
-
         apiDataContainer.innerHTML = view
     })
-
-
-
-
 
     event.preventDefault()
 })

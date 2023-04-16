@@ -18,7 +18,12 @@
         // max-width: 450px;
         // width: 100%;
         // padding: 0 15px;
-        width: min(100% - 30px, 500px)
+        width: min(100% - 30px, 500px);
+
+        @include forBigPhone {
+            width: min(100% - 30px, 250px);
+        }
+
     }
 
     &__city {
@@ -47,6 +52,11 @@
         align-items: center;
         gap: 15px;
         border-radius: 20px;
+
+        @include forBigPhone {
+            flex-direction: column;
+            text-align: center;
+        }
 
     }
 
