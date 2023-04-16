@@ -8,7 +8,16 @@ weatherForm.addEventListener('submit', (event) => {
     let city = inputCity.value;
     let fullApiUrl = apiURL + city
 
-    fetch(fullApiUrl).then(response => response.json()).then((dataFromApi) => {
+    fetch(fullApiUrl).then(response => {
+        if (response.status === 200) {
+            return response.json()
+        }
+
+        throw new Error('API Error')
+
+    }).then((dataFromApi) => {
+
+
         // console.log(dataFromApi.current.temp_c)
         let view = ``
         // view += `W ${dataFromApi.location.name} jest dzisiaj ${dataFromApi.current.temp_c} stopni celcjusza`
@@ -47,7 +56,21 @@ weatherForm.addEventListener('submit', (event) => {
         view += `</div>`
 
         apiDataContainer.innerHTML = view
+
+
+    }).catch((error) => {
+        showError()
+
     })
 
     event.preventDefault()
+
 })
+
+// 
+// Show error function
+// 
+
+let showError = () => {
+    apiDataContainer.innerHTML = `<div class= "weather__error">City not found or we have problem with API</div>`
+}
